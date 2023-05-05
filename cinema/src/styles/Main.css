@@ -1,0 +1,50 @@
+@font-face {
+    font-family: rochaline;
+    src: url(Rochaline-Regular.otf);
+}
+
+body{
+    background-color: rgb(22, 22, 22);
+}
+
+header > h1{
+    color: aliceblue;
+    justify-content: center;
+    text-align: center;
+    font-size: 80px;
+    font-family: rochaline;
+    margin: 20px 0;
+}
+
+header > h1 > b{
+    color: rgb(196, 0, 65);
+}
+
+hr{
+    margin: 0;
+    border: 0;
+    height: 2px;
+    background: #333;
+    background-image: linear-gradient(to right, rgb(22, 22, 22), #ccc, rgb(22, 22, 22));
+}
+
+nav{
+    display: flex;
+    justify-content: flex-end;
+    column-gap: 30px;
+    background:linear-gradient(to bottom, #570c25 5%, #c40041 100%);
+    padding: 10px 30px;
+}
+
+nav button{
+    background-color: transparent;
+    color: aliceblue;
+    border: 0;
+    font-size: 30px;
+    font-family: rochaline;
+}
+
+nav button:hover {
+	text-shadow: 4px 4px 6px rgba(66, 68, 90, 1);
+    cursor: pointer;
+}

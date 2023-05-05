@@ -1,0 +1,62 @@
+#movie-carousel{
+    padding: 0;
+    position: relative;
+}
+
+#movie-carousel > button{
+    position: absolute;
+    height: 250px;
+    width: 80px;
+    border: 0;
+    background-color: #0000003d;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    color: white;
+    font-size: 100px;
+}
+
+#movie-carousel > button:hover{
+    background-color: #000000d3;
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+#movie-carousel > button:last-child{
+    top: 0;
+    right: 0;
+}
+
+#movie-carousel > ul{
+    display: flex;
+    overflow: hidden;
+    scroll-snap-type: x mandatory;
+    padding: 0;
+    column-gap: 5px;
+    border-radius: 2px;
+}
+
+#movie-carousel > ul > li:first-child, #movie-carousel > ul > li:last-child{
+    width: 75px;
+    visibility: hidden;
+}
+
+#movie-carousel > ul > li{
+    background-color: #4d4d4d;
+    font-size: 50px;
+    width: 250px;
+    height: 250px;
+    flex-shrink: 0;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    transition: width 1s, height 1s;
+}
+
+#movie-carousel > ul > li:hover{
+    width: 300px;
+    height: 260px;
+    transition: width 1s, height 1s;
+    cursor: pointer;
+}

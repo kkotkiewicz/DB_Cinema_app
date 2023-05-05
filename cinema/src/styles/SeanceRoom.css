@@ -1,0 +1,52 @@
+@font-face {
+    font-family: rochaline;
+    src: url(Rochaline-Regular.otf);
+}
+#seance-room{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#seats{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 300px;
+    align-items: center;
+    justify-content: center;
+}
+
+#seats>div{
+    margin: 2px;
+    height: 50px;
+    max-width: 50px;
+    width: 50px;
+    text-align: center;
+    border-radius: 5px;
+}
+
+#screen{
+    text-align: center;
+    margin-bottom: 10px;
+    width: 300px;
+    height: 20px;
+    background-color: aliceblue;
+    border-radius: 5px;
+}
+
+#seance-room>button{
+    margin: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    background:linear-gradient(to bottom, #570c25 5%, #c40041 100%);
+    color: aliceblue;
+    font-family: rochaline;
+    font-size: 20px;
+}
+
+#seance-room>button:hover{
+    background:linear-gradient(to top, #570c25 5%, #c40041 100%);
+}

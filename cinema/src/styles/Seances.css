@@ -1,0 +1,36 @@
+@font-face {
+    font-family: rochaline;
+    src: url(Rochaline-Regular.otf);
+}
+
+#seances{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: aliceblue;
+}
+
+#seances > h2{
+    font-family: rochaline;
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+#seances > h2 > b{
+    color: rgb(196, 0, 65);
+}
+
+#seances > a, #seances > a:visited{
+    color: aliceblue;
+    font-size: 20px;
+    transition: color 1s;
+    padding: 5px 0;
+    text-decoration: none;
+}
+
+#seances > a:hover{
+    color: rgb(196, 0, 65);
+    transition: color 1s;
+    cursor: pointer;
+}
