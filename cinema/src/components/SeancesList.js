@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, setState } from 'react';
 import "../styles/Seances.css";
 
 const SeancesList = ({...props}) => {

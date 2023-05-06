@@ -16,6 +16,12 @@ app.get("/seances/:id", (req, res) => {
     res.send({ seats: [{id: 0, taken:true}, {id: 1, taken:false}, {id: 2, taken:false}, {id: 3, taken:false}, {id: 4, taken:false}, {id: 5, taken:true}]})
 })
 
+const authRoute = require('./auth')
+app.use("/auth", authRoute)
+
+const userRoute = require('./user')
+app.use("/user", userRoute)
+
 app.listen(port, function () {
     console.log("Backend API listening on port " + port)
 })

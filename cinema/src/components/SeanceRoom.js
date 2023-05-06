@@ -35,7 +35,7 @@ function SeanceRoom({...props}) {
                     <Seat id = {seat.id} color = {seat.color}></Seat>
                 ))}
             </div>
-            <button>Go to reservation page</button>
+            <a href = {`/reservation/${0}`}><button>Go to reservation page</button></a>
         </div>
     );
 }
