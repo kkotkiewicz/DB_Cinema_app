@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
 import "../styles/Login.css"
 
-const ReservationPage = () => {
+const ReservationPage = (props) => {
     const [inputs, setInputs] = useState({});
+    const [logged, checkLogin] = useState(false);
 
-  const handleChange = (event) => {
+    const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
 
@@ -16,10 +17,12 @@ const ReservationPage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(inputs);
+    console.log(props.seats);
   }
 
   return (
-    <div className="form-style-8">
+    <>{!logged ?
+        <div className="form-style-8">
         <h2>Log in</h2>
         <form onSubmit={handleSubmit}>
         <label>Enter your email:
@@ -50,6 +53,7 @@ const ReservationPage = () => {
         </form>
         <p>Or <a href = "/login">login</a> to make reservation quicker and collect loyalty points!</p>
     </div>
+    :<button value="Pay for reservation"></button>}</>
   )
 };
 

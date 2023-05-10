@@ -9,7 +9,7 @@ const Seat = ({id, ...props}) => {
             setColor(props.color);
             return;
         }
-
+        props.reserve();
     }, [color])
 
     return (

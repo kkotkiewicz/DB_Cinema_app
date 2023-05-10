@@ -5,7 +5,7 @@
 
 #movie-carousel > button{
     position: absolute;
-    height: 250px;
+    height: 350px;
     width: 80px;
     border: 0;
     background-color: #0000003d;
@@ -44,7 +44,7 @@
     background-color: #4d4d4d;
     font-size: 50px;
     width: 250px;
-    height: 250px;
+    height: 350px;
     flex-shrink: 0;
     color: #fff;
     display: flex;
@@ -52,11 +52,13 @@
     align-items: center;
     border-radius: 2px;
     transition: width 1s, height 1s;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #movie-carousel > ul > li:hover{
     width: 300px;
-    height: 260px;
+    height: 360px;
     transition: width 1s, height 1s;
     cursor: pointer;
 }

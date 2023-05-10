@@ -14,18 +14,26 @@ import ReservationPage from './ReservationPage';
 const Main = () => {
     const[movie, setMovie] = useState({
         movieId: null,
+        movieTitle: "",
         seances: [],
         movieDisplayed: false
     });
 
-    const getMovieData = (id) =>{
+    const[seats, reserveSeats] = useState([]);
+
+    const getMovieData = (id, title) =>{
         Movies.getMovie(id).then((res) => {
-            //console.log(res.data);
-            setMovie({movieId: id, seances: res.data.seances, movieDisplayed: true});
+            console.log(res.data);
+            setMovie({movieID: id, movieTitle: title, seances: res.data, movieDisplayed: true});
         })
         .catch((err) => {
             console.log(err)
         })
+    }
+
+    const reserve = (seats) => {
+        console.log(seats);
+        reserveSeats(seats);
     }
 
     return (
@@ -42,12 +50,12 @@ const Main = () => {
                 <Routes>
                     <Route path = "/" element = {<>
                         <MoviesCarousel getMovieData = {getMovieData}/>
-                        {movie.movieDisplayed && <SeancesList seances = {movie.seances} id = {movie.movieId}></SeancesList>}
+                        {movie.movieDisplayed && <SeancesList movieTitle = {movie.movieTitle} seances = {movie.seances} id = {movie.movieId}></SeancesList>}
                     </>}/>
                     <Route path = "/login" element = {<Login/>}/>
                     <Route path = "/signup" element = {<Signin/>}/>
-                    <Route path = "/seance/:id" element = {<SeanceRoom/>}/>
-                    <Route path = "/reservation/:id" element = {<ReservationPage/>}/>
+                    <Route path = "/seance/:id" element = {<SeanceRoom reserve = {reserve}/>}/>
+                    <Route path = "/reservation/:id" element = {<ReservationPage seats = {seats}/>}/>
                 </Routes>
             </BrowserRouter>
             {/* reducer z akcjami i kontext który obsługuje te rzeczy (useContext, useReducer) */}

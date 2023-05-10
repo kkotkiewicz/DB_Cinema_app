@@ -8,6 +8,12 @@ const Movies = {
             method: 'GET',
             url: `${URL}/movies/${id}`,
         })
+    },
+    getMovies: () => {
+        return axios({
+            method: 'GET',
+            url: `${URL}/movies`,
+        })
     }
 }
 
