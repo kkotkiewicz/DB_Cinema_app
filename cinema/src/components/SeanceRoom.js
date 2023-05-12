@@ -1,10 +1,11 @@
 import React from 'react';
 import { Seances } from '../services/Seances';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useImmer } from 'use-immer';
 import {useLocation} from "react-router-dom";
 import "../styles/SeanceRoom.css"
 import Seat from './Seat';
+import { SeatsContext } from './Main';
 
 function SeanceRoom({...props}) {
     const location = useLocation();
@@ -13,12 +14,13 @@ function SeanceRoom({...props}) {
         seanceId: id,
         seats: []
     });
+    const {seats, reserveSeats} = useContext(SeatsContext);
 
     useEffect(() => {
         Seances.getSeance(id).then((res) => {
-            let tmp = res.data.seats;
+            let tmp = res.data;
             tmp.forEach((seat)=>{
-                seat["color"] = seat.taken?'rgb(126, 0, 0)':'#8bc34a';
+                seat["color"] = seat.SEAT_TAKEN?'rgb(126, 0, 0)':(seat.VIP?'#94dfff':'#8bc34a');
                 seat["reserved"] = false;
             });
 
@@ -30,10 +32,11 @@ function SeanceRoom({...props}) {
     }, [])
 
     const reserve = (id) =>{
-        let tmp = seance.seats;
-        //console.log(tmp);
-        //tmp[id].reserved = !tmp[id].reserved;
-        setSeance((x)=>({...x, seats: tmp}))
+        console.log(id);
+        // let tmp = seance.seats;
+        // //console.log(tmp);
+        // //tmp[id].reserved = !tmp[id].reserved;
+        // setSeance((x)=>({...x, seats: tmp}))
     }
 
     return (
@@ -41,10 +44,11 @@ function SeanceRoom({...props}) {
             <div id = "screen">Screen</div>
             <div id = "seats">
                 {seance.seats.map((seat, i) => (
-                    <Seat reserve = {reserve} id = {seat.id} color = {seat.color}></Seat>
+                    <Seat key = {seat.SEAT_ID} reserve = {reserve} id = {seat.SEAT_ID} color = {seat.color}></Seat>
                 ))}
             </div>
-            <a href = {`/reservation/${0}`}><button onClick={()=>{props.reserve(seance.seats)}}>Go to reservation page</button></a>
+            <a href = {`/reservation/${0}`}><button onClick={()=>{reserveSeats({ type: "insert", count: 1 });}}>Go to reservation page</button></a>
+            {/* <button onClick={()=>{reserveSeats({ type: "insert", count: 1 });}}>Go to reservation page</button> */}
         </div>
     );
 }

@@ -22,12 +22,12 @@ const MoviesCarousel = ({...props}) => {
   return (
     <div id = "movie-carousel">
       <button onClick={() => prev()}>{'\u2039'}</button>
-      <ul
+      {movies.rendered && <ul
         ref={scrollRef}
       >
         <li></li>
 
-        {movies.rendered && movies.movies.map((movie, i) => (
+        {movies.movies.map((movie, i) => (
           <li key={movie.MOVIE_ID} onClick={() => props.getMovieData(movie.MOVIE_ID, movie.MOVIE_TITLE)} style={{ 
               backgroundImage: `url(${movie.MOVIE_IMG})` 
             }}>
@@ -35,7 +35,7 @@ const MoviesCarousel = ({...props}) => {
         ))}
 
         <li></li>
-      </ul>
+      </ul>}
       <button onClick={() => next()}>{'\u203A'}</button>
     </div>
   );

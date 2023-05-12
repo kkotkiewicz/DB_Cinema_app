@@ -12,9 +12,9 @@ const oracledb = require("oracledb");
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
 const params = {
-    user:"***",
-    password:"***",
-    connectionString:"***"
+    user:"BD_411227",
+    password:"st8735",
+    connectionString:"(DESCRIPTION =(ADDRESS = (PROTOCOL = TCP)(HOST = dbmanage.lab.ii.agh.edu.pl)(PORT = 1521))(CONNECT_DATA =(SID= DBMANAGE)))"
 };
   
 const connect = async () => {
@@ -58,8 +58,20 @@ app.get("/movies/:id", async (req, res) => {
     });
 })
 
-app.get("/seances/:id", (req, res) => {
-    res.send({ seats: [{id: 0, taken:true}, {id: 1, taken:false}, {id: 2, taken:false}, {id: 3, taken:false}, {id: 4, taken:false}, {id: 5, taken:true}]})
+app.get("/seances/:id", async (req, res) => {
+    const conn = await connect();
+    const query = `select * from BD_411227.SEATS_PER_SEANCE_ID(${req.params.id})`;
+
+    conn?.execute(query, [], { autoCommit: true }, (error, result) => {
+        if (error) {
+          return res.status(500).json({
+            message: error.message,
+            error,
+          });
+        } else {
+            return res.status(201).json(result.rows);
+        }
+    });
 })
 
 const authRoute = require('./auth')

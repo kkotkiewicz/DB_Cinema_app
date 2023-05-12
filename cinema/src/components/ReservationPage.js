@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
+import { SeatsContext } from './Main';
 import "../styles/Login.css"
 
 const ReservationPage = (props) => {
     const [inputs, setInputs] = useState({});
     const [logged, checkLogin] = useState(false);
+    const {seats, reserveSeats} = useContext(SeatsContext);
 
     const handleChange = (event) => {
     const name = event.target.name;
@@ -17,7 +19,7 @@ const ReservationPage = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(inputs);
-    console.log(props.seats);
+    console.log(seats);
   }
 
   return (

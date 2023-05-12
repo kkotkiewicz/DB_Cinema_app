@@ -9,11 +9,11 @@ const Seat = ({id, ...props}) => {
             setColor(props.color);
             return;
         }
-        props.reserve();
     }, [color])
 
     return (
-        <div style={{backgroundColor: color}} onClick={()=>{setColor(color=="yellow"?props.color:"yellow")}}>{id}</div>
+        <div style={{backgroundColor: color}} onClick={()=>{setColor(color=="yellow"?props.color:"yellow");
+                                                            if(props.color != "rgb(126, 0, 0)") props.reserve(id);}}>{id}</div>
     );
 };
 
