@@ -13,16 +13,6 @@ import ReservationPage from './ReservationPage';
 
 const SeatsContext = createContext();
 
-function reducer(state, action) {
-    console.log(action);
-    switch (action.type) {
-      case "insert":
-        return { count: action.count };
-      default:
-        return state;
-    }
-}
-
 const Main = () => {
 
     const[movie, setMovie] = useState({
@@ -32,11 +22,11 @@ const Main = () => {
         movieDisplayed: false
     });
 
-    const[seats, reserveSeats] = useReducer(reducer, {count: 0})
+    const[seats, reserveSeats] = useState({})
 
     const getMovieData = (id, title) =>{
         Movies.getMovie(id).then((res) => {
-            console.log(res.data);
+            //console.log(res.data);
             setMovie({movieID: id, movieTitle: title, seances: res.data, movieDisplayed: true});
         })
         .catch((err) => {
@@ -73,9 +63,8 @@ const Main = () => {
                 </Routes>
             </SeatsContext.Provider>
             </BrowserRouter>
-            {/* reducer z akcjami i kontext który obsługuje te rzeczy (useContext, useReducer) */}
         </>
     );
 };
 
-export {Main, SeatsContext, reducer};
+export {Main, SeatsContext};

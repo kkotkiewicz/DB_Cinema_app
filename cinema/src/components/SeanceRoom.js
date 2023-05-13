@@ -2,7 +2,7 @@ import React from 'react';
 import { Seances } from '../services/Seances';
 import { useEffect, useState, useContext } from 'react';
 import { useImmer } from 'use-immer';
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import "../styles/SeanceRoom.css"
 import Seat from './Seat';
 import { SeatsContext } from './Main';
@@ -15,6 +15,7 @@ function SeanceRoom({...props}) {
         seats: []
     });
     const {seats, reserveSeats} = useContext(SeatsContext);
+    const navigate = useNavigate();
 
     useEffect(() => {
         Seances.getSeance(id).then((res) => {
@@ -32,11 +33,9 @@ function SeanceRoom({...props}) {
     }, [])
 
     const reserve = (id) =>{
-        console.log(id);
-        // let tmp = seance.seats;
-        // //console.log(tmp);
-        // //tmp[id].reserved = !tmp[id].reserved;
-        // setSeance((x)=>({...x, seats: tmp}))
+        let tmp = seats;
+        tmp[id] = tmp[id] === "undefined"?true:!tmp[id];
+        reserveSeats(tmp);
     }
 
     return (
@@ -47,8 +46,7 @@ function SeanceRoom({...props}) {
                     <Seat key = {seat.SEAT_ID} reserve = {reserve} id = {seat.SEAT_ID} color = {seat.color}></Seat>
                 ))}
             </div>
-            <a href = {`/reservation/${0}`}><button onClick={()=>{reserveSeats({ type: "insert", count: 1 });}}>Go to reservation page</button></a>
-            {/* <button onClick={()=>{reserveSeats({ type: "insert", count: 1 });}}>Go to reservation page</button> */}
+            <button onClick={()=>{reserveSeats({seanceId: seance.seanceId, seats: seats});navigate(`/reservation/${0}`)}}>Go to reservation page</button>
         </div>
     );
 }

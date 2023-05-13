@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useImmer } from 'use-immer';
 import { SeatsContext } from './Main';
 import "../styles/Login.css"
+import { Reservation } from '../services/Reservation';
 
 const ReservationPage = (props) => {
     const [inputs, setInputs] = useState({});
@@ -18,8 +19,15 @@ const ReservationPage = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(inputs);
     console.log(seats);
+    let tmp = [];
+    for (const [key, value] of Object.entries(seats.seats)) {
+      if(value){
+        tmp.push(key);
+      }
+    }
+
+    Reservation.reserve(tmp, seats.seanceId, 'NULL');
   }
 
   return (

@@ -74,6 +74,39 @@ app.get("/seances/:id", async (req, res) => {
     });
 })
 
+app.post("/reservation", async (req, res) => {
+    const conn = await connect();
+
+    //console.log(req.body);
+
+    let query = `declare
+    myarray num_array;
+    begin
+    myarray := num_array();`
+
+    let i = 1;
+    req.body.seats.forEach(seat => {
+        query += `
+        myarray.extend(1);
+        myarray(${i}) := ${seat};`
+        i++;
+    });
+    
+    query += `add_reservation(myarray, ${req.body.seanceId}, ${req.body.userId}, 0);
+    end;`;
+
+    conn?.execute(query, [], { autoCommit: true }, (error, result) => {
+        if (error) {
+          return res.status(500).json({
+            message: error.message,
+            error,
+          });
+        } else {
+            return res.status(201);
+        }
+    });
+})
+
 const authRoute = require('./auth')
 app.use("/auth", authRoute)
 
