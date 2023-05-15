@@ -77,8 +77,6 @@ app.get("/seances/:id", async (req, res) => {
 app.post("/reservation", async (req, res) => {
     const conn = await connect();
 
-    //console.log(req.body);
-
     let query = `declare
     myarray num_array;
     begin
@@ -92,7 +90,7 @@ app.post("/reservation", async (req, res) => {
         i++;
     });
     
-    query += `add_reservation(myarray, ${req.body.seanceId}, ${req.body.userId}, 0);
+    query += `add_reservation(myarray, ${req.body.seanceId}, ${req.body.userId}, ${req.body.paid});
     end;`;
 
     conn?.execute(query, [], { autoCommit: true }, (error, result) => {

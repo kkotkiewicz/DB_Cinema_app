@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { useEffect, useState } from 'react';
-import { useImmer } from 'use-immer';
+import { useState } from 'react';
 import { SeatsContext } from './Main';
 import "../styles/Login.css"
 import { Reservation } from '../services/Reservation';
@@ -19,7 +18,7 @@ const ReservationPage = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(seats);
+    //console.log(seats);
     let tmp = [];
     for (const [key, value] of Object.entries(seats.seats)) {
       if(value){
@@ -33,13 +32,13 @@ const ReservationPage = (props) => {
   return (
     <>{!logged ?
         <div className="form-style-8">
-        <h2>Log in</h2>
+        <h2>Make reservation</h2>
         <form onSubmit={handleSubmit}>
         <label>Enter your email:
         <input 
             type="text" 
             name="email" 
-            value={inputs.username || ""} 
+            value={inputs.email || ""} 
             onChange={handleChange}
         />
         </label>
@@ -47,15 +46,15 @@ const ReservationPage = (props) => {
             <input 
             type="text" 
             name="username" 
-            value={inputs.password || ""} 
+            value={inputs.username || ""} 
             onChange={handleChange}
             />
         </label>
         <label>Enter your lastname:
             <input 
             type="text" 
-            name="username" 
-            value={inputs.password || ""} 
+            name="lastname" 
+            value={inputs.lastname || ""} 
             onChange={handleChange}
             />
         </label>

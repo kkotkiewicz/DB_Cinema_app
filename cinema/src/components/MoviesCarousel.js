@@ -11,7 +11,7 @@ const MoviesCarousel = ({...props}) => {
 
   useEffect(() => {
     Movies.getMovies().then((res) => {
-      console.log(res.data);
+      //console.log(res.data);
       setMovies({rendered: true, movies: res.data});
     })
     .catch((err) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useImmer } from 'use-immer';
 import "../styles/Login.css"
 
@@ -13,7 +13,7 @@ const Signin = () => {
     const name = event.target.name;
     const value = event.target.value;
 
-    setErr(x=>{x.password.show = (name == "password" && value.length < 8)});
+    setErr(x=>{x.password.show = (name === "password" && value.length < 8)});
     console.log(err);
 
     setInputs(values => ({...values, [name]:value}))
@@ -26,13 +26,13 @@ const Signin = () => {
 
   return (
     <div className="form-style-8">
-        <h2>Log in</h2>
+        <h2>Sign in</h2>
         <form onSubmit={handleSubmit}>
         <label>Enter your email:
         <input 
             type="text" 
             name="email" 
-            value={inputs.username || ""} 
+            value={inputs.email || ""} 
             onChange={handleChange}
         />
         </label>
@@ -40,15 +40,15 @@ const Signin = () => {
             <input 
             type="text" 
             name="username" 
-            value={inputs.password || ""} 
+            value={inputs.username || ""} 
             onChange={handleChange}
             />
         </label>
         <label>Enter your lastname:
             <input 
             type="text" 
-            name="username" 
-            value={inputs.password || ""} 
+            name="lastname" 
+            value={inputs.lastname || ""} 
             onChange={handleChange}
             />
         </label>
