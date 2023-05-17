@@ -28,7 +28,7 @@ const connect = async () => {
 
 app.get("/movies", async (req, res) => {
     const conn = await connect();
-    const query = "select * from MOVIES";
+    const query = "select * from GET_MOVIES";
 
     conn?.execute(query, [], { autoCommit: true }, (error, result) => {
         if (error) {
