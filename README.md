@@ -5,6 +5,6 @@ Database course project.
 Aleksandra Poskróbek
 Kacper Kotkiewicz
 
-##Technologie
+## Technologie
 React.js + Node.js
 Oracle
